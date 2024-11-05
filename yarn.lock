@@ -1446,15 +1446,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-libc@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "detect-libc@npm:1.0.3"
-  bin:
-    detect-libc: ./bin/detect-libc.js
-  checksum: 3849fe7720feb153e4ac9407086956e073f1ce1704488290ef0ca8aab9430a8d48c8a9f8351889e7cdc64e5b1128589501e4fef48f3a4a49ba92cd6d112d0757
-  languageName: node
-  linkType: hard
-
 "detect-newline@npm:^3.0.0":
   version: 3.1.0
   resolution: "detect-newline@npm:3.1.0"
@@ -1466,15 +1457,6 @@ __metadata:
   version: 29.6.3
   resolution: "diff-sequences@npm:29.6.3"
   checksum: 179daf9d2f9af5c57ad66d97cb902a538bcf8ed64963fa7aa0c329b3de3665ce2eb6ffdc2f69f29d445fa4af2517e5e55e5b6e00c00a9ae4f43645f97f7078cb
-  languageName: node
-  linkType: hard
-
-"dprint-node@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "dprint-node@npm:1.0.8"
-  dependencies:
-    detect-libc: "npm:^1.0.3"
-  checksum: c4d33416ca5cf37918abb6247d62d7442aacaf0c7cf2936592c33598b7a4823edac23ac5ef4fecfb5f95d6306ce289c2c282a2ee864885678b1b08b89490b325
   languageName: node
   linkType: hard
 
@@ -3657,7 +3639,6 @@ __metadata:
     "@types/jest": "npm:^29.5.11"
     "@types/mock-fs": "npm:^4.13.1"
     "@types/node": "npm:^20.10.6"
-    dprint-node: "npm:^1.0.8"
     jest: "npm:^29.7.0"
     mock-fs: "npm:^5.2.0"
     prettier: "npm:3.1.1"

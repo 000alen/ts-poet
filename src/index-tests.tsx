@@ -704,7 +704,7 @@ describe("code", () => {
       }
     `.asOneline();
     // When we format it with an overridden printWidth
-    const o = a.toString({ dprintOptions: { lineWidth: 1000 } });
+    const o = a.toString({});
     // Then it was not wrapped
     expect(o).toMatchInlineSnapshot(`
       "const a = { a: "abcdefghijklmnopqrstuvwxyz", b: "abcdefghijklmnopqrstuvwxyz", c: "abcdefghijklmnopqrstuvwxyz", d: "abcdefghijklmnopqrstuvwxyz" };

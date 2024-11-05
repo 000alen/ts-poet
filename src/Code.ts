@@ -3,9 +3,6 @@ import { emitImports, ImportsName, sameModule, Import, ImportsDefault, ImportsAl
 import { isPlainObject } from "./is-plain-object";
 import { ConditionalOutput, MaybeOutput } from "./ConditionalOutput";
 import { code } from "./index";
-import dprint from "dprint-node";
-
-export type DPrintOptions = Exclude<Parameters<typeof dprint.format>[2], never>;
 
 /** Options for `toString`, i.e. for the top-level, per-file output. */
 export interface ToStringOpts {
@@ -21,8 +18,6 @@ export interface ToStringOpts {
   importExtensions?: boolean | "ts" | "js";
   /** A top-of-file prefix, i.e. eslint disable. */
   prefix?: string;
-  /** dprint config settings. */
-  dprintOptions?: DPrintOptions;
   /** Whether to format the source or not. */
   format?: boolean;
   /** optional importMappings */
@@ -47,7 +42,7 @@ export class Code extends Node {
   /** Returns the formatted code, with imports. */
   toString(opts: ToStringOpts = {}): string {
     this.codeWithImports ??= this.generateCodeWithImports(opts);
-    return opts.format === false ? this.codeWithImports : maybePretty(this.codeWithImports, opts.dprintOptions);
+    return opts.format === false ? this.codeWithImports : maybePretty(this.codeWithImports);
   }
 
   asOneline(): Code {
@@ -248,26 +243,8 @@ function assignAliasesIfNeeded(defs: Def[], imports: Import[], ourModulePath: st
   });
 }
 
-// This default options are both "prettier-ish" plus also suite the ts-poet pre-formatted
-// output which is all bunched together, so we want to force braces / force new lines.
-const baseOptions: DPrintOptions = {
-  useTabs: false,
-  useBraces: "always",
-  singleBodyPosition: "nextLine",
-  "arrowFunction.useParentheses": "force",
-  // dprint-node uses `node: true`, which we want to undo
-  "module.sortImportDeclarations": "caseSensitive",
-  lineWidth: 120,
-  // For some reason dprint seems to wrap lines "before it should" w/o this set (?)
-  preferSingleLine: true,
-};
-
-function maybePretty(input: string, options?: DPrintOptions): string {
-  try {
-    return dprint.format("file.ts", input.trim(), { ...baseOptions, ...options });
-  } catch (e) {
-    return input; // assume it's invalid syntax and ignore
-  }
+function maybePretty(input: string): string {
+  return input; // assume it's invalid syntax and ignore
 }
 
 /**

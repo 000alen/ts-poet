@@ -26,10 +26,6 @@ It lets you generate code as "just strings" (no need to tediously create a low-l
 
 3. Includes any other conditional output (see later), as/if needed.
 
-4. Formats the output with [dprint-node](https://github.com/devongovett/dprint-node), an extremely fast formatter with "basically prettier-ish" output.
-
-   ts-poet originally used prettier directly, but it became the bottleneck for multiple projects that use ts-poet for their code generation, even with caching to only format actually-changed output, so we switched to dprint and saw dramatic speedups.
-
 Example
 =======
 
@@ -79,19 +75,6 @@ const greeter = code`
 // Generate the full output, with imports
 const output = greeter.toString();
 ```
-
-Formatting Output
-=================
-
-By default, we configure `dprint-node` with "prettier-ish" settings that attempt to match prettier, given that we assume most projects are using prettier for their formatting.
-
-If you'd like to customize the settings, you can either:
-
-* If using `ts-poet` programmatically, you can pass the `dprintOptions` key to `Code.toString({ ... })`, or
-
-* If using `ts-poet` via another library (like [Joist](https://joist-orm.io/)), you can create a `.dprint.json` file that should get picked up automatically (see the [dprint docs](https://dprint.dev/setup/#hidden-config-file))
-
-For either option, the [dprint config](https://dprint.dev/plugins/typescript/config/) covers the available formatting options.
 
 Import Specs
 ============

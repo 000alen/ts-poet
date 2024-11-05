@@ -21,7 +21,7 @@ export interface SaveFilesOpts {
   directory?: string;
   /** The files to generate. */
   files: CodegenFile[];
-  /** The default toString opts, i.e. dprint settings, etc. */
+  /** The default toString opts. */
   toStringOpts?: ToStringOpts;
 }
 
@@ -84,10 +84,6 @@ function contentToString(file: CodegenFile, toStringOpts: ToStringOpts): string 
     path: file.name,
     ...toStringOpts,
     ...file.toStringOpts,
-    dprintOptions: {
-      ...toStringOpts.dprintOptions,
-      ...file.toStringOpts?.dprintOptions,
-    },
   });
 }
 
